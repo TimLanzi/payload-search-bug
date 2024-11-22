@@ -45,6 +45,11 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
                   like: query,
                 },
               },
+              {
+                'categories.title': {
+                  like: query,
+                },
+              },
             ],
           },
         }
@@ -59,6 +64,7 @@ export default async function Page({ searchParams: searchParamsPromise }: Args) 
           <h1 className="sr-only">Search</h1>
           <Search />
         </div>
+        <div>{posts.totalDocs}</div>
       </div>
 
       {posts.totalDocs > 0 ? (

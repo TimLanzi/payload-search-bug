@@ -127,6 +127,13 @@ export const seed = async ({
   })
 
   payload.logger.info(`— Seeding categories...`)
+  const diveCategory = await payload.create({
+    collection: 'categories',
+    data: {
+      title: 'Dive',
+    },
+  })
+
   const technologyCategory = await payload.create({
     collection: 'categories',
     data: {
@@ -209,7 +216,7 @@ export const seed = async ({
   const post3Doc = await payload.create({
     collection: 'posts',
     data: JSON.parse(
-      JSON.stringify({ ...post3, categories: [financeCategory.id] })
+      JSON.stringify({ ...post3, categories: [financeCategory.id, diveCategory.id] })
         .replace(/"\{\{IMAGE_1\}\}"/g, String(image3ID))
         .replace(/"\{\{IMAGE_2\}\}"/g, String(image1ID))
         .replace(/"\{\{AUTHOR\}\}"/g, String(demoAuthorID)),
